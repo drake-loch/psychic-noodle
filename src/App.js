@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './components/firebase/AuthContext';
 import Landing from './components/Pages/Landing/Landing';
+import PostBrowser from './components/Pages/PostBrowser/PostBrowser';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={Landing} />
+          <Route path="/post-browser" component={PostBrowser} />
         </Switch>
       </Router>
     </AuthProvider>
