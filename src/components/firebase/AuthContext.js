@@ -32,18 +32,25 @@ export function AuthProvider({children}) {
 
     //create a post takes in data, formats it and uploads to database
     function createPost(data){
-        console.log("creating post");
-        let postData = new PostData(data.title,data.name,data.timestamp,data.body);
-        console.log(postData);
+        console.log(data);
+        const postListRef = db.ref('/posts');
+        const newPostRef = postListRef.push();
+        newPostRef.set({
+            data
+        });
     }
 
     //gets all post data from db and returns them in a array
-    function getAllPosts(){
+    async function getAllPosts(setList){
         db.ref(`/posts`).once('value')
         .then((snapshot) => {
-            console.log(snapshot.val());
+            let tempList = [];
+            snapshot.forEach(item => {
+                console.log(item);
+                tempList.push(item.val())
+            });
+            setList(tempList);
         })
-
     }
 
     
