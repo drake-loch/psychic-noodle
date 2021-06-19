@@ -110,7 +110,7 @@ export function LoginMod({loginToggle}) {
                         <input type="password" name="password" id="password" className="w-full border-2 border-black py-1 px-1" placeholder="Password..." />
                     </div>
                     <button onClick={e => loginEvent(e)} name="login" type="submit" className="border-2 border-gray-500 py-2 px-5 bg-green-500">login</button>
-                    <button onClick ={e => createAccount(e)} name="create" type="submit" className="w-full text-center text-purple-500 mt-2">create account</button>
+                    <button onClick ={e => null} name="create" type="submit" className="w-full text-center text-purple-500 mt-2">create account</button>
                 </form>
             </div>
         </div>
