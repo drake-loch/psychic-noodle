@@ -65,6 +65,7 @@ export function ModWindow({modToggle,loginToggle}) {
     return (
         <div className="absolute w-screen h-screen bg-black bg-opacity-50 left-0 top-0 flex flex-row-reverse">
             <div className="relitive w-2/3 h-full bg-gray-300 flex flex-col-reverse">
+            <div className="text-xs">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
                 <button className="absolute top-0 right-0 p-4 bg-red-500" onClick={modToggle}>X</button>
                 {currentUser ?
                 <button style={{fontFamily:'OpenSans'}} onClick={e => logout()} className="w-full mb-1 bg-yellow-500 h-12 flex justify-center items-center">
@@ -78,7 +79,7 @@ export function ModWindow({modToggle,loginToggle}) {
                 <button style={{fontFamily:'OpenSans'}} onClick={e => blogBttn()} className="w-full bg-green-600 mb-2 h-12 flex justify-center items-center">
                     <h3 className="text-6x1">Blog</h3>
                 </button>
-
+                
             </div>
         </div>
     )
