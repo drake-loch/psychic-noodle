@@ -35,6 +35,7 @@ export function AuthProvider({children}) {
         console.log(data);
         const postListRef = db.ref('/posts');
         const newPostRef = postListRef.push();
+        data.id = newPostRef.key
         newPostRef.set({
             data
         });
@@ -53,6 +54,14 @@ export function AuthProvider({children}) {
         })
     }
 
+    async function getPost(postID,toSet){
+        db.ref(`/posts/${postID}`).once('value')
+        .then((snapshot) => {
+            // console.log(snapshot.val());
+            toSet(snapshot.val());
+        })
+    }
+
     
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -67,6 +76,7 @@ export function AuthProvider({children}) {
         signin,
         createPost,
         getAllPosts,
+        getPost,
     }
     return (
         <AuthContext.Provider value={value}>

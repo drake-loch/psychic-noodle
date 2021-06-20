@@ -1,4 +1,6 @@
+import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../firebase/AuthContext'
 import Navbar from '../../Navbar/Navbar'
 
@@ -53,7 +55,7 @@ function PostBrowser() {
         let toReturn = [];
         console.log("TO render:");
         console.log(toRender);
-        toRender.forEach(post => toReturn.push(<PostCard title={post.data.title} name={post.data.name} timestamp={post.data.timestamp} body={post.data.body} />));
+        toRender.forEach(post => toReturn.push(<PostCard title={post.data.title} name={post.data.name} timestamp={post.data.timestamp} body={post.data.body} postID={post.data.id} />));
         // toReturn = <PostCard />
         return toReturn;
     }
@@ -65,7 +67,7 @@ function PostBrowser() {
         <div className="w-screen min-h-screen pb-5 bg-gray-400">
             <Navbar />
             {currentUser ? <button onClick={e => addPost()} className="px-3 py-2 bg-green-500 border border-green-700 ml-5 mt-5">Create Post +</button> : null}
-            <section className="px-2 w-screen pt-5">
+            <section className="px-6 lg:px-80 w-screen pt-5">
                 {renderList ? renderPostCards(postList) : null}
             </section>
         </div>
@@ -74,21 +76,23 @@ function PostBrowser() {
 
 export default PostBrowser
 
+//a component specific to this page to be rendered
+export function PostCard({title,name,timestamp,body, postID}) {
 
-export function PostCard({title,name,timestamp,body}) {
+    const history = useHistory();
 
     function timeConverter(){
         return `${timestamp.month}/${timestamp.day}/${timestamp.year}`;
     }
     return (
-        <div className="bg-gray-300 w-full min-h-1/2 mb-2 flex flex-wrap px-5 pt-5 pb-10 shadow-md" style={{fontFamily:'OpenSans'}}>
+        <div className="bg-gray-300 w-full min-h-1/2 mb-5 flex flex-wrap px-5 pt-5 pb-10 shadow-lg" style={{fontFamily:'OpenSans'}}>
             <h4 className="w-full text-center font-bold" style={{fontFamily:'TitilliumWeb', fontSize:'1.75rem'}}>{title}</h4>
             <div className="w-full flex">
                 <p className="w-1/2 py-2">By: {name}</p>
                 <p className="w-1/2 py-2 text-right">Posted: {timeConverter()}</p>
             </div>
             <p className="w-full border-t border-b py-2">{body}</p>
-            <p className="w-full text-right text-purple-600">Expore Further...</p>
+            <p className="w-full text-right text-purple-600" onClick={e => history.push(`/post/${postID}`)}>Expore Further...</p>
         </div>
     )
 }
