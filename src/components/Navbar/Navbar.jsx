@@ -47,8 +47,12 @@ export default Navbar
 //navigation mod window
 export function ModWindow({modToggle,loginToggle}) {
 
+    const {currentUser, logout} = useAuth();
+    const history = useHistory();
+
     const blogBttn = () => {
         console.log("pressed");
+        history.push('/post-browser');
     }
     const loginBttn = () => {
         console.log("pressed");
@@ -59,9 +63,15 @@ export function ModWindow({modToggle,loginToggle}) {
         <div className="absolute w-screen h-screen bg-black bg-opacity-50 left-0 top-0 flex flex-row-reverse">
             <div className="relitive w-2/3 h-full bg-gray-300 flex flex-col-reverse">
                 <button className="absolute top-0 right-0 p-4 bg-red-500" onClick={modToggle}>X</button>
+                {currentUser ?
+                <button style={{fontFamily:'OpenSans'}} onClick={e => logout()} className="w-full mb-1 bg-yellow-500 h-12 flex justify-center items-center">
+                    <h3 className="text-4x1">Logout</h3>
+                </button>
+                :
                 <button style={{fontFamily:'OpenSans'}} onClick={e => loginBttn()} className="w-full mb-1 bg-green-600 h-12 flex justify-center items-center">
                     <h3 className="text-4x1">Login</h3>
                 </button>
+                }
                 <button style={{fontFamily:'OpenSans'}} onClick={e => blogBttn()} className="w-full bg-green-600 mb-2 h-12 flex justify-center items-center">
                     <h3 className="text-6x1">Blog</h3>
                 </button>
@@ -110,7 +120,7 @@ export function LoginMod({loginToggle}) {
                         <input type="password" name="password" id="password" className="w-full border-2 border-black py-1 px-1" placeholder="Password..." />
                     </div>
                     <button onClick={e => loginEvent(e)} name="login" type="submit" className="border-2 border-gray-500 py-2 px-5 bg-green-500">login</button>
-                    <button onClick ={e => null} name="create" type="submit" className="w-full text-center text-purple-500 mt-2">create account</button>
+                    {/* <button onClick ={e => null} name="create" type="submit" className="w-full text-center text-purple-500 mt-2">create account</button> */}
                 </form>
             </div>
         </div>

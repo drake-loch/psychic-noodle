@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './components/firebase/AuthContext';
+import CreatePost from './components/Pages/CreatePost/CreatePost';
 import Landing from './components/Pages/Landing/Landing';
 import Post from './components/Pages/Post/Post';
 import PostBrowser from './components/Pages/PostBrowser/PostBrowser';
@@ -12,6 +13,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/post-browser" component={PostBrowser} />
+          <Route path="/create-post" component={CreatePost} />
           <Route path="/post/:id" exact component={Post} />
         </Switch>
       </Router>

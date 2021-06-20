@@ -30,6 +30,10 @@ export function AuthProvider({children}) {
         return auth.signInWithEmailAndPassword(email,password);
     }
 
+    function logout(){
+        return auth.signOut();
+    }
+
     //create a post takes in data, formats it and uploads to database
     function createPost(data){
         console.log(data);
@@ -47,7 +51,7 @@ export function AuthProvider({children}) {
         .then((snapshot) => {
             let tempList = [];
             snapshot.forEach(item => {
-                console.log(item);
+                // console.log(item);
                 tempList.push(item.val())
             });
             setList(tempList);
@@ -74,6 +78,7 @@ export function AuthProvider({children}) {
         currentUser,
         signup,
         signin,
+        logout,
         createPost,
         getAllPosts,
         getPost,
