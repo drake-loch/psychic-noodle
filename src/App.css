@@ -1,12 +1,19 @@
 @font-face {
   font-family: "OpenSans";
   src: local("OpenSans"),
-   url("./assets/fonts/OpenSans/OpenSans-Regular.ttf") format("truetype");
+  url("./assets/fonts/OpenSans/OpenSans-Regular.ttf") format("truetype");
+  font-weight: regular;
+}
+/* ============================================================================ */
+@font-face {
+  font-family: "TitilliumWeb";
+  src: local("TitilliumWeb"),
+  url("./assets/fonts/Titillium/TitilliumWeb-Regular.ttf") format("truetype");
   font-weight: regular;
 }
 @font-face {
   font-family: "TitilliumWeb";
   src: local("TitilliumWeb"),
-   url("./assets/fonts/Titillium/TitilliumWeb-Regular.ttf") format("truetype");
-  font-weight: regular;
+  url("./assets/fonts/Titillium/TitilliumWeb-Bold.ttf") format("truetype");
+  font-weight: bold;
 }
