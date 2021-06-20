@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../firebase/AuthContext';
 import Navbar from '../../Navbar/Navbar'
 
-
+//the base post data structure. Needs a title, name and body. Creates timestamp on creation
 class PostData {
     constructor(title,name,body){
         this.title = title;
@@ -19,12 +19,13 @@ class PostData {
     }
 }
 
+//a page to create a page. Posts can only be made by me. Because its my blog lol
 function CreatePost() {
 
     const {currentUser, createPost} = useAuth();
     const history = useHistory();
 
-    //gets info to be subbmited to post list and pushes to post browser
+    //gets info to be subbmited to post list and pushes location to /post-browser
     const submitHandler = (e) => {
         e.preventDefault();
         const title = e.target.form[1].value;

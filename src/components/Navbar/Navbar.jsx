@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import dragonImg from '../../assets/pictures/dragon.png'
 import { useAuth } from '../firebase/AuthContext';
 
+//navigation bar at top of webpages
 function Navbar() {
     const [toggleMod, setToggleMod] = useState(false);
     const [toggleLoginMod, setToggleLoginMod] = useState(false);
-    const location = useLocation();
+
+    // const location = useLocation();
     const history = useHistory();
+
     useEffect(() => {
-        console.log(`Location is: ${location.pathname}`);
+        // console.log(`Location is: ${location.pathname}`);
     }, []);
 
+    //open and close hamburger menu
     const hamburgToggle = () => {
-        console.log("clicked!");
         setToggleMod(!toggleMod);
     }
+    //open and close login mod window
     const loginModToggle = () => {
-        console.log("clicked!");
         setToggleLoginMod(!toggleLoginMod);
     }
 
@@ -25,7 +28,7 @@ function Navbar() {
         <nav className="relitive w-screen, h-auto bg-gray-400 flex justify-between px-5 py-3">
             {toggleMod ? <ModWindow modToggle={hamburgToggle} loginToggle={loginModToggle} /> : null}
             {toggleLoginMod ? <LoginMod loginToggle={loginModToggle} /> : null}
-            <img className="w-16 h-16 cursor-pointer" src={dragonImg} alt="A logo" />
+            <img onClick={e => history.push('/')} className="w-16 h-16 cursor-pointer" src={dragonImg} alt="A logo" />
             <div style={{fontFamily:'TitilliumWeb'}} className="flex items-center w-2/3 text-xl">
                 <p className="pb-2 mr-4" onClick={e => history.push('/')}>Home</p>
                 <p className="pb-2" onClick={e => history.push('/post-browser')}>Blog</p>

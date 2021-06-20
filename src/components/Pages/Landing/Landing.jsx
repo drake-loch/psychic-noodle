@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../Navbar/Navbar'
 
+//landing page, nothing special
 function Landing() {
     return (
         <div className="bg-gray-300 h-screen relative">
